@@ -1,16 +1,27 @@
+import { useState } from 'react';
+
+import { Toaster } from 'react-hot-toast';
+
+import { Searchbar } from './Searchbar/Searchbar';
+import { ImageGallery } from './ImageGallery/ImageGallery';
+
 export const App = () => {
+  const [search, setSearch] = useState('');
+
+  const handleSubmit = search => {
+    setSearch(search);
+  };
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 2000,
+        }}
+      />
+      <Searchbar onSearch={handleSubmit} />
+      <ImageGallery value={search} />
     </div>
   );
 };
